@@ -1,5 +1,6 @@
-import {Column, DataType, Model, Table} from "sequelize-typescript";
+import {Column, DataType, HasMany, Model, Table} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
+import {Car} from "../cars/cars.model";
 
 interface UserCreationAttribute {
     email: string,
@@ -19,5 +20,9 @@ export class User extends Model<User, UserCreationAttribute> {
     @ApiProperty({example: 'abX_123-yuiL', description: "Users password"})
     @Column({type: DataType.STRING, allowNull: false})
     password: string;
+
+    @ApiProperty({example: [{brand: "BMW", model: "535i", year: "2015"}], description: "User cars for sale"})
+    @HasMany(() => Car, "id")
+    cars: [Car]
 
 }
