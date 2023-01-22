@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import {User} from "./users/users.model";
 import { CarsModule } from './cars/cars.module';
 import {Car} from "./cars/cars.model";
+import { AuthModule } from './auth/auth.module';
 
 @Module({
     controllers: [],
@@ -25,6 +26,7 @@ import {Car} from "./cars/cars.model";
         }),
         UsersModule,
         CarsModule,
+        AuthModule,
     ]
 
 })

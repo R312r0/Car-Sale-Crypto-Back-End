@@ -3,23 +3,20 @@ import {ApiProperty} from "@nestjs/swagger";
 import {Car} from "../cars/cars.model";
 
 interface UserCreationAttribute {
-    email: string,
-    password: string
+    address: string,
 }
 
 @Table({tableName: 'users'})
 export class User extends Model<User, UserCreationAttribute> {
+
     @ApiProperty({example: '1', description: "Uniq identifier"})
-    @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
+    @Column({type: DataType.INTEGER, unique: true, autoIncrement: true,  primaryKey: true})
     id: number;
 
-    @ApiProperty({example: 'test@mail.com', description: "Users email"})
-    @Column({type: DataType.STRING, unique: true, allowNull: false})
-    email: string;
+    @ApiProperty({example: '0x388C818CA8B9251b393131C08a736A67ccB19297', description: "Ethereum address"})
+    @Column({type: DataType.STRING, unique: true})
 
-    @ApiProperty({example: 'abX_123-yuiL', description: "Users password"})
-    @Column({type: DataType.STRING, allowNull: false})
-    password: string;
+    address: string;
 
     @ApiProperty({example: [{brand: "BMW", model: "535i", year: "2015"}], description: "User cars for sale"})
     @HasMany(() => Car, "id")

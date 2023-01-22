@@ -18,4 +18,9 @@ export class UsersService {
         return users;
     }
 
+    async getUserByAddress(address: string) {
+        const candidate = await this.userRepository.findOne({where: {address}, include: {all: true}});
+        return candidate;
+    }
+
 }
